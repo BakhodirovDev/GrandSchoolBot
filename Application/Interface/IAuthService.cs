@@ -14,5 +14,6 @@ namespace Application.Interface
         Task<ResponseDto<Users>> IsLoginAsync(long telegramId);
         Task<ResponseDto<Users>> RegisterAsync(RegisterDto registerDto);
         Task<ResponseDto<Users>> LoginAsync(LoginDto loginDto, long telegramId);
+        Task<ResponseDto> LogoutAsync(long telegramId);
     }
 }

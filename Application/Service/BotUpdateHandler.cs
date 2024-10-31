@@ -130,7 +130,7 @@ namespace Application.Service
             }
             else if (message.Text?.ToLower() == "/soat")
             {
-                await SendMessageAsync(botClient, chatId, "Server vaqti: " + DateTime.Now.ToString("HH:mm:ss"));
+                await SendMessageAsync(botClient, chatId, "Server vaqti: " + DateTime.Now.ToString("HH:mm:ss"), replyMarkup: new ReplyKeyboardRemove());
             }
             else if (userStates.TryGetValue(chatId, out var state))
             {
@@ -364,7 +364,7 @@ namespace Application.Service
                 registerUsers[chatId].PhoneNumber = message.Contact.PhoneNumber;
                 await DeleteMessagesAsync(botClient, chatId, message.MessageId);
                 userStates[chatId] = "awaiting_registration_Username"; // Start registration process
-                await SendMessageAsync(botClient, chatId, "Iltimos, Username (Foydalanuvchi) nomingizni kiriting:");
+                await SendMessageAsync(botClient, chatId, "Iltimos, Username (Foydalanuvchi) nomingizni kiriting:", replyMarkup: new ReplyKeyboardRemove());
 
             }
             else

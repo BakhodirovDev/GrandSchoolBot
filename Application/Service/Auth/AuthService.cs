@@ -165,5 +165,31 @@ namespace Application.Service.Auth
 
             }
         }
+
+        public async Task<ResponseDto> LogoutAsync(long telegramId)
+        {
+            var session = await _dbContext.Sessions
+                .FirstOrDefaultAsync(u => u.TelegramId == telegramId);
+
+            if (session != null)
+            {
+                return new ResponseDto
+                {
+                    Message = "User not found",
+                    Success = true,
+                };
+
+            }
+            else
+            {
+                _dbContext.Sessions.Remove(session);
+                await _dbContext.SaveChangesAsync();
+                return new ResponseDto
+                {
+                    Message = "User found",
+                    Success = true,
+                };
+            }
+        }
     }
 }
